@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safe Travels, Aliza!</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            color: white;
+            overflow: hidden;
+        }
+        h1 {
+            margin-top: 50px;
+            font-size: 2.5em;
+        }
+        #countdown {
+            font-size: 2em;
+            margin: 20px;
+        }
+        .message {
+            font-size: 1.5em;
+            margin: 20px;
+        }
+        .road {
+            position: relative;
+            width: 100vw;
+            height: 200px;
+            background: #333;
+            overflow: hidden;
+            margin-top: 50px;
+            border-top: 5px solid white;
+            border-bottom: 5px solid white;
+        }
+        .car {
+            position: absolute;
+            bottom: 20px;
+            width: 100px;
+            left: 10%;
+            animation: moveCar 5s linear infinite alternate;
+        }
+        @keyframes moveCar {
+            0% { left: 10%; }
+            100% { left: 80%; }
+        }
+        .quote-container {
+            margin-top: 30px;
+            font-size: 1.5em;
+            color: #fff;
+            opacity: 0;
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+            transform: translateY(20px);
+        }
+        .quote-wrapper {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            max-width: 80%;
+            margin: 0 auto;
+        }
+        .hugging-image-container {
+            width: 100%;
+            height: 450px;
+            margin-top: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .hugging-image {
+            width: 80%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 10px;
+        }
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 2em;
+            }
+            #countdown {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Safe Travels, My Love! 💖</h1>
+    <p class="message">A special surprise awaits you when you return! 🧳</p>
+    <div id="countdown"></div>
+    <div class="road">
+        <img src="https://cdn-icons-png.flaticon.com/512/741/741407.png" class="car" alt="Car">
+    </div>
+    
+    <!-- Quote Container -->
+    <div class="quote-container" id="quote">
+        <div class="quote-wrapper">
+            "You are my heart, my soul, and the reason for my happiness." 💕
+        </div>
+    </div>
+
+    <!-- Hugging GIF Container -->
+    <div class="hugging-image-container">
+        <iframe src="https://giphy.com/embed/SwUqpdM8i6NH2asVn2" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed hugging-image" allowFullScreen></iframe>
+    </div>
+    <p><a href="https://giphy.com/stickers/jun-lily-and-marigold-jinzhan-SwUqpdM8i6NH2asVn2" style="color: white; text-decoration: underline;">via GIPHY</a></p>
+
+    <script>
+        // Countdown Timer
+        const returnTime = new Date("2025-02-06T20:00:00").getTime();
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const diff = returnTime - now;
+            if (diff <= 0) {
+                document.getElementById("countdown").innerHTML = "Aliza is back! 💕";
+            } else {
+                let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                document.getElementById("countdown").innerHTML = `⏳ ${hours}h ${minutes}m ${seconds}s`;
+            }
+        }
+        setInterval(updateCountdown, 1000);
+
+        // Quotes Array and Function to Change Quote
+        const quotes = [
+            "You are my heart, my soul, and the reason for my happiness. 💕",
+            "Every moment with you is a beautiful chapter of my life. ❤️",
+            "My love for you is endless, like the stars in the sky. 🌟",
+            "You make my world a better place, Aliza. 🌍💖",
+            "No matter where life takes us, I'll always cherish you. 🥰"
+        ];
+
+        let currentQuoteIndex = 0;
+
+        function changeQuote() {
+            const quoteContainer = document.getElementById("quote");
+            const quoteWrapper = quoteContainer.querySelector(".quote-wrapper");
+            currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+            quoteWrapper.innerHTML = quotes[currentQuoteIndex];
+
+            // Apply animation and transition
+            quoteContainer.style.opacity = 0;
+            quoteContainer.style.transform = "translateY(20px)";
+
+            setTimeout(() => {
+                quoteContainer.style.opacity = 1;
+                quoteContainer.style.transform = "translateY(0)";
+            }, 200);
+        }
+
+        setInterval(changeQuote, 1800000); // Change the quote every 30 minutes
+        // Initial fade-in effect
+        setTimeout(() => {
+            document.getElementById("quote").style.opacity = 1;
+            document.getElementById("quote").style.transform = "translateY(0)";
+        }, 100);
+    </script>
+</body>
+</html>
